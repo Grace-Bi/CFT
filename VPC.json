@@ -1,0 +1,84 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "create a vpc",
+    "Metadata": {
+
+    },
+    "Parameters": {
+      
+      "VPCCIRDR": {
+          "Description": "For my vpc",
+          "Type": "String"
+          
+      },
+      
+      "PublicSubCIDR": {
+          "Description": "For the public subnet",
+          "Type": "String"
+          
+      },
+      
+      "PublicSubCIDR1": {
+          "Description": "For public subnet",
+          "Type": "String"
+         
+      },
+      
+      "PrivSubCIDR1": {
+          "Description": "For the private subnet",
+          "Type": "String"
+          
+      },
+      
+      "PrivSubCIDR2": {
+          "Description": "For private subnet",
+          "Type": "String"
+          
+      },
+      
+      
+      "AZA": {
+          "Description": "For availability zone A",
+          "Type": "AWS::EC2::AvailabilityZone::Name"
+          
+      },
+      
+      "AZB": {
+          "Description": "For availability zone B",
+          "Type": "AWS::EC2::AvailabilityZone::Name"
+          
+      }
+
+    },
+    "Mappings": {
+
+    },
+    "Conditions": {
+
+    },
+    "Resources": {
+    "Ashuvpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": { "Ref": "VPCCIRDR" },
+        "Tags": [{ "Key": "Name", "Value":  "Ashuvpc" }]
+      }
+    },
+    
+    "AshuvpcSubPub": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone":{ "Ref": "AZA" },
+        "VpcId": { "Ref": "Ashuvpc" },
+        "CidrBlock": { "Ref": "PublicSubCIDR" },
+        "Tags": [{ "Key": "Name", "Value":  "AshuvpcSubPub" }]
+      }
+    }
+    
+    
+
+    },
+    "Outputs": {
+
+    }
+}
